@@ -3,7 +3,7 @@
     internal class Cell
     {
         public Cell() { }
-        public Cell(int x, int y, byte neigbours = 0) 
+        public Cell(int x, int y, byte neigbours = 0)
         { X = x; Y = y; Neigbours = neigbours; }
 
         public int X;
@@ -54,7 +54,7 @@
                 {
                     Console.Write("");
                 }
-                
+
             }
         }
 
@@ -67,7 +67,7 @@
                 if (cell.ALive)
                 {
                     if (cell.X < _map.GetLength(0) - 1 && cell.Y < _map.GetLength(1) - 1)
-                    _map[cell.X + 1, cell.Y + 1].Neigbours++;
+                        _map[cell.X + 1, cell.Y + 1].Neigbours++;
                     if (cell.X > 0 && cell.Y > 0)
                         _map[cell.X - 1, cell.Y - 1].Neigbours++;
 
@@ -79,7 +79,7 @@
                     if (cell.Y < _map.GetLength(1) - 1)
                         _map[cell.X, cell.Y + 1].Neigbours++;
                     if (cell.Y > 0)
-                    _map[cell.X, cell.Y - 1].Neigbours++;
+                        _map[cell.X, cell.Y - 1].Neigbours++;
 
                     if (cell.X < _map.GetLength(0) - 1)
                         _map[cell.X + 1, cell.Y].Neigbours++;
@@ -96,7 +96,7 @@
                 if (!cell.ALive && cell.Neigbours == 3)
                     cell.ALive = true;
                 else if (cell.ALive && cell.Neigbours > 3 || cell.ALive && cell.Neigbours < 2)
-                    cell.ALive = false; 
+                    cell.ALive = false;
             }
         }
 
@@ -111,7 +111,8 @@
                 }
             }
 
-            if (aLivingCells != null) {
+            if (aLivingCells != null)
+            {
                 foreach (Cell cell in aLivingCells)
                 {
                     if (cell.X < X && cell.Y < Y)
@@ -126,8 +127,8 @@
 
     public static void Main()
     {
-        int sizeY = 20;
-        int sizeX = 60;
+        int sizeY = 29;
+        int sizeX = 120;
 
         List<Cell> cells = new List<Cell>();
         Random rnd = new Random();
@@ -143,13 +144,24 @@
         cells.Add(new Cell(12, 10));
         cells.Add(new Cell(12, 9));*/
 
+        // Pulsar // 
+        /*cells.Add(new Cell(15, 30));
+        cells.Add(new Cell(16, 29));
+        cells.Add(new Cell(16, 30));
+        cells.Add(new Cell(16, 31));
+
+        cells.Add(new Cell(15, 36));
+        cells.Add(new Cell(16, 35));
+        cells.Add(new Cell(16, 36));
+        cells.Add(new Cell(16, 37));*/
+
         Map map = new Map(sizeY, sizeX, cells.ToArray());
 
         Console.CursorVisible = false;
         for (int i = 0; i < 1000; i++)
         {
             map.Draw();
-            Thread.Sleep(200);
+            Thread.Sleep(0);
             map.Clear();
         }
     }
